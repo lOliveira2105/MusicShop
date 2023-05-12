@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicShop.ProductApi", "MusicShop.ProductApi\MusicShop.ProductApi.csproj", "{6999C1C1-363C-4336-B3FB-C70C9E77BB33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicShop.ProductApi", "MusicShop.ProductApi\MusicShop.ProductApi.csproj", "{6999C1C1-363C-4336-B3FB-C70C9E77BB33}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicShop.Front", "MusicShop.Front\MusicShop.Front.csproj", "{DD4BD761-C35F-48E9-8678-255A42D112FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{FCE6F89D-B1EB-4E18-B9C5-38A2BFC965A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{B673B918-2162-4671-97BF-5458A0936135}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +21,17 @@ Global
 		{6999C1C1-363C-4336-B3FB-C70C9E77BB33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6999C1C1-363C-4336-B3FB-C70C9E77BB33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6999C1C1-363C-4336-B3FB-C70C9E77BB33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD4BD761-C35F-48E9-8678-255A42D112FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD4BD761-C35F-48E9-8678-255A42D112FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD4BD761-C35F-48E9-8678-255A42D112FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD4BD761-C35F-48E9-8678-255A42D112FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6999C1C1-363C-4336-B3FB-C70C9E77BB33} = {B673B918-2162-4671-97BF-5458A0936135}
+		{DD4BD761-C35F-48E9-8678-255A42D112FF} = {FCE6F89D-B1EB-4E18-B9C5-38A2BFC965A1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3B41909D-2819-45AD-8566-B0E7B1557469}

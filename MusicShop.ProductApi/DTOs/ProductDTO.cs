@@ -4,17 +4,20 @@ public class ProductDTO {
     [Required(ErrorMessage = "The Name is Required")]
     [MaxLength(100)]
     public string? Name { get; set; }
-    [Required(ErrorMessage = "The Name is Required")]
+    [Required(ErrorMessage = "The Description is Required")]
     [MinLength(1)]
-    [MaxLength(100)]
+    [MaxLength(250)]
     public string? Description { get; set; }
     [Required(ErrorMessage = "The Price is Required")]
     public decimal Price { get; set; }
-    [Required(ErrorMessage = "The Name is Required")]
+    [Required(ErrorMessage = "The Stock is Required")]
     [Range(1,9999)]
     public long Stock { get; set; }
+    [Required(ErrorMessage = "The Stock is Required")]
     public string? Artist { get; set; }
     public string? ImageURL { get; set; }
+    public string? CategoryName { get; set; }
+    [JsonIgnore]
     public Category? Category { get; set; }
     public int CategoryId { get; set; }
 }
