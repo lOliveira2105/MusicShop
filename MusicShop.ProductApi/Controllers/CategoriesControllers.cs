@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using MusicShop.ProductApi.Services;
-
+﻿
 namespace MusicShop.ProductApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class CategoriesController : ControllerBase {
     private readonly ICategoryService _categoryService;
 
@@ -63,7 +61,7 @@ public class CategoriesController : ControllerBase {
 
         return Ok(categoryDto);
     }
-
+    [Authorize(Roles = Role.Admin)]
     [HttpDelete("{id:int}")]
     public async Task<ActionResult<CategoryDTO>> Delete(int id) {
         var categoryDto = await _categoryService.GetCategoryById(id);

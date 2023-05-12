@@ -10,4 +10,6 @@ global using MusicShop.ProductApi.Repositories;
 global using MusicShop.ProductApi.Services;
 global using Microsoft.AspNetCore.Mvc;
 global using System.Text.Json.Serialization;
+global using Microsoft.AspNetCore.Authorization;
+global using MusicShop.ProductApi.Roles;
 

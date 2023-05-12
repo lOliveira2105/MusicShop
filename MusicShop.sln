@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{FC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{B673B918-2162-4671-97BF-5458A0936135}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicShop.IdentityServer", "MusicShop.IdentityServer\MusicShop.IdentityServer.csproj", "{244D7571-3E3C-48A8-B13C-B909D7FDD0FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{DD4BD761-C35F-48E9-8678-255A42D112FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD4BD761-C35F-48E9-8678-255A42D112FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD4BD761-C35F-48E9-8678-255A42D112FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{244D7571-3E3C-48A8-B13C-B909D7FDD0FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{244D7571-3E3C-48A8-B13C-B909D7FDD0FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{244D7571-3E3C-48A8-B13C-B909D7FDD0FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{244D7571-3E3C-48A8-B13C-B909D7FDD0FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{6999C1C1-363C-4336-B3FB-C70C9E77BB33} = {B673B918-2162-4671-97BF-5458A0936135}
 		{DD4BD761-C35F-48E9-8678-255A42D112FF} = {FCE6F89D-B1EB-4E18-B9C5-38A2BFC965A1}
+		{244D7571-3E3C-48A8-B13C-B909D7FDD0FA} = {B673B918-2162-4671-97BF-5458A0936135}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3B41909D-2819-45AD-8566-B0E7B1557469}

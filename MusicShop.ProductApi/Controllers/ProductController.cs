@@ -2,6 +2,8 @@
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
+
 public class ProductsController : ControllerBase
 {
     private readonly IProductService _productService;
@@ -53,7 +55,7 @@ public class ProductsController : ControllerBase
 
         return Ok(produtoDto);
     }
-
+    [Authorize(Roles = Role.Admin)]
     [HttpDelete("{id}")]
     public async Task<ActionResult<ProductDTO>> Delete(int id)
     {

@@ -1,4 +1,5 @@
-﻿namespace MusicShop.Front.Controllers;
+﻿
+namespace MusicShop.Front.Controllers;
 
 public class ProductController : Controller
 {
@@ -29,8 +30,8 @@ public class ProductController : Controller
 
         return View();
     }
-
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> CreateProduct(ProductViewModel productVM)
     {
         if (ModelState.IsValid)
@@ -63,6 +64,7 @@ public class ProductController : Controller
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> UpdateProduct(ProductViewModel productVM)
     {
         if (ModelState.IsValid)
@@ -74,7 +76,7 @@ public class ProductController : Controller
         }
         return View(productVM);
     }
-
+    [Authorize]
     [HttpGet]
     public async Task<ActionResult<ProductViewModel>> DeleteProduct(int id)
     {
@@ -85,7 +87,7 @@ public class ProductController : Controller
 
         return View(result);
     }
-
+    [Authorize(Roles = Role.Admin)]
     [HttpPost(), ActionName("DeleteProduct")]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
