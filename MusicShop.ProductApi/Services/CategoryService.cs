@@ -1,0 +1,42 @@
+﻿
+using MusicShop.ProductApi.DTOs;
+
+namespace MusicShop.ProductApi.Services;
+
+public class CategoryService : ICategoryService {
+    private readonly ICategoryRepository _categoryRepository;
+    private readonly IMapper _mapper;
+
+    public CategoryService(IMapper mapper, ICategoryRepository categoryRepositor) {
+        _mapper = mapper;
+        _categoryRepository = categoryRepositor;
+
+    }
+    public async Task<IEnumerable<CategoryDTO>> GetCategories() {
+        var categoriesEntity = await _categoryRepository.GetAll();
+        return _mapper.Map<IEnumerable<CategoryDTO>>(categoriesEntity);
+    }
+    public async Task<IEnumerable<CategoryDTO>> GetCategoriesProducts() {
+        var categoriesEntity = await _categoryRepository.GetCategoriesProducts();
+        return _mapper.Map<IEnumerable<CategoryDTO>>(categoriesEntity);
+    }
+
+    public async Task<CategoryDTO> GetCategoryById(int id) {
+        var categoriesEntity = await _categoryRepository.GetById(id);
+        return _mapper.Map<CategoryDTO>(categoriesEntity);
+    }
+    public async Task AddCategory(CategoryDTO categoryDTO) {
+        var categoriesEntity = _mapper.Map<Category>(categoryDTO);
+        await _categoryRepository.Create(categoriesEntity);
+        categoryDTO.CategoryId = categoriesEntity.CategoryId;        
+    }
+    public async Task UpdateCategory(CategoryDTO categoryDTO) {
+        var categoriesEntity = _mapper.Map<Category>(categoryDTO);
+        await _categoryRepository.Update(categoriesEntity);
+    }
+    public async Task RemoveCategory(int id) {
+        var categoriesEntity = _categoryRepository.GetById(id).Result;
+        await _categoryRepository.Delete(categoriesEntity.CategoryId);
+    }
+
+}
