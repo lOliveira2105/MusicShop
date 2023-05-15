@@ -39,7 +39,7 @@ public class IdentityConfiguration
                 },
                 new Client
                 {
-                    ClientId = "vshop",
+                    ClientId = "musicshop",
                     ClientSecrets = { new Secret("abracadabra#simsalabim".Sha256())},
                     AllowedGrantTypes = GrantTypes.Code, //via codigo
                     RedirectUris = {"https://localhost:7165/signin-oidc"},//login

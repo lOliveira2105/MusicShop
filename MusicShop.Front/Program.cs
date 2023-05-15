@@ -1,4 +1,3 @@
-using MusicShop.Front.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +11,26 @@ builder.Services.AddHttpClient("ProductApi", c =>
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = "Coockies";
+    options.DefaultChallengeScheme = "oidc";
+})
+    .AddCookie("Coockies", c => c.ExpireTimeSpan = TimeSpan.FromMinutes(10))
+    .AddOpenIdConnect("oidc", options =>
+    {
+        options.Authority = builder.Configuration["ServicesUri:IdentityServer"];
+        options.GetClaimsFromUserInfoEndpoint = true;
+        options.ClientId = "musicshop";
+        options.ClientSecret = builder.Configuration["Client:Secret"];
+        options.ResponseType = "code";
+        options.ClaimActions.MapJsonKey("role", "role", "role");
+        options.ClaimActions.MapJsonKey("sub", "sub", "sub");
+        options.TokenValidationParameters.NameClaimType = "name";
+        options.TokenValidationParameters.RoleClaimType = "role";
+        options.Scope.Add("MusicShop");
+        options.SaveTokens = true;
+    });
 
 var app = builder.Build();
 
@@ -25,7 +44,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

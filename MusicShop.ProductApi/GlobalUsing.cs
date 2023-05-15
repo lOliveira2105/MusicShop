@@ -12,4 +12,4 @@ global using Microsoft.AspNetCore.Mvc;
 global using System.Text.Json.Serialization;
 global using Microsoft.AspNetCore.Authorization;
 global using MusicShop.ProductApi.Roles;
-
+global using Microsoft.OpenApi.Models;
