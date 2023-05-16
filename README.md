@@ -1,4 +1,4 @@
 # MusicShop
-<h1 align="center">
-    <a href="https://pt-br.reactjs.org/">Still being updated</a>
+<h1 align="center">   Still being updated
 </h1>
+<p align="center"> Store project open source in C#</p>
