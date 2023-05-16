@@ -1,6 +1,4 @@
 
-using MusicShop.IdentityServer.SeedDataBase;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -34,6 +32,7 @@ var builderIdentityServer = builder.Services.AddIdentityServer(options =>
    builderIdentityServer.AddDeveloperSigningCredential();
 
 builder.Services.AddScoped<IDataBaseSeedInitialazer, DatabaseIdentityServerInitializer>();
+builder.Services.AddScoped<IProfileService, ProfileAppService>();
 
 var app = builder.Build();
 
