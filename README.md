@@ -18,3 +18,9 @@ This project is a web store for music vinyl records, built using C#, microservic
 - C# (.NET Core)
 - Microservices architecture
 - Docker
+
+## Acknowledgements
+- [ASP.NET Core Documentation](https://docs.microsoft.com/aspnet/core/)
+- [Docker Documentation](https://docs.docker.com/)
+- [Microservices Architecture](https://microservices.io/)
+
