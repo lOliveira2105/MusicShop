@@ -13,6 +13,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{B673
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicShop.IdentityServer", "MusicShop.IdentityServer\MusicShop.IdentityServer.csproj", "{244D7571-3E3C-48A8-B13C-B909D7FDD0FA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicShop.CartApi", "MusicShop.CartApi\MusicShop.CartApi.csproj", "{5B232714-7C0A-430A-9F4A-44F11AA717A9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{942B89E6-75BA-4A5D-8AAC-50CD6197E220}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,10 @@ Global
 		{244D7571-3E3C-48A8-B13C-B909D7FDD0FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{244D7571-3E3C-48A8-B13C-B909D7FDD0FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{244D7571-3E3C-48A8-B13C-B909D7FDD0FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B232714-7C0A-430A-9F4A-44F11AA717A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B232714-7C0A-430A-9F4A-44F11AA717A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B232714-7C0A-430A-9F4A-44F11AA717A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B232714-7C0A-430A-9F4A-44F11AA717A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +47,7 @@ Global
 		{6999C1C1-363C-4336-B3FB-C70C9E77BB33} = {B673B918-2162-4671-97BF-5458A0936135}
 		{DD4BD761-C35F-48E9-8678-255A42D112FF} = {FCE6F89D-B1EB-4E18-B9C5-38A2BFC965A1}
 		{244D7571-3E3C-48A8-B13C-B909D7FDD0FA} = {B673B918-2162-4671-97BF-5458A0936135}
+		{5B232714-7C0A-430A-9F4A-44F11AA717A9} = {B673B918-2162-4671-97BF-5458A0936135}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3B41909D-2819-45AD-8566-B0E7B1557469}

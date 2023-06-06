@@ -1,0 +1,9 @@
+﻿global using Microsoft.EntityFrameworkCore;
+global using MusicShop.CartApi.Models;
+global using MusicShop.CartApi.Context;
+global using Microsoft.OpenApi.Models;
+global using AutoMapper;
+global using MusicShop.CartApi.DTOs;
+global using System.Globalization;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Mvc;
