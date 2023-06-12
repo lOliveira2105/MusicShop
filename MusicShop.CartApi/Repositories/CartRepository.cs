@@ -17,7 +17,7 @@ public class CartRepository : ICartRepository
             CartHeader = await _context.CartHeaders.FirstOrDefaultAsync(c => c.UserId == userId)
         };
         //Obter os itents 
-        cart.CartItems = _context.CartItems.Where(c => c.CartHEader.Id == cart.CartHeader.Id).Include(c => c.Product);
+        cart.CartItems = _context.CartItems.Where(c => c.CartHeader.Id == cart.CartHeader.Id).Include(c => c.Product);
         return _mapper.Map<CartDTO>(cart);
     }
     public async Task<bool> DeleteItemCartAsync(int cartItemId)

@@ -1,10 +1,10 @@
-﻿namespace MusicShop.CartApi.Models;
+﻿namespace MusicShop.Front.Models;
 
-public class CartItem
+public class CartItemViewModel
 {
     public int Id { get; set; }
+    public ProductViewModel? Product { get; set; }
     public int Quantity { get; set; }
     public int ProductId { get; set; }
     public int CartHeaderId { get; set; }
-    public Product Product { get; set; } = new Product();
 }
