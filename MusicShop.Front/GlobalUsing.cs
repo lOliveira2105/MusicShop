@@ -11,6 +11,8 @@ global using Microsoft.AspNetCore.Authentication;
 global using MusicShop.Front.Services;
 global using System.Diagnostics;
 global using System.Net.Http.Headers;
+global using Microsoft.AspNetCore.Authentication.Cookies;
+global using System.Text;
 
 
 

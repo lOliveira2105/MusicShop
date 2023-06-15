@@ -13,7 +13,7 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "MusicShop.CartApi", Version = "v1" });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        Description = @"Enter 'Bearer'  [space] seu token",
+        Description = @"Enter 'Bearer' [space] seu token",
         Name = "Authorization",
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.ApiKey,
@@ -43,7 +43,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ICartRepository, CartRepository>();
-    //builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy",
@@ -85,6 +84,8 @@ app.UseCors("CorsPolicy");
 app.UseRouting();
 
 app.UseAuthentication();
+app.UseAuthorization();
+
 
 app.MapControllers();
 

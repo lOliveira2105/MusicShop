@@ -6,7 +6,7 @@ public class MappingProfile : Profile
     {
         CreateMap<CartDTO, Cart>().ReverseMap();
         CreateMap<CartHeaderDTO, CartHeader>().ReverseMap();
-        CreateMap<CartItemDTO, Cart>().ReverseMap();
+        CreateMap<CartItemDTO, CartItem>().ReverseMap();
         CreateMap<ProductDTO, Product>().ReverseMap();
 
 

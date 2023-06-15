@@ -9,7 +9,11 @@ builder.Services.AddHttpClient("ProductApi", c =>
 {
     c.BaseAddress = new Uri(builder.Configuration["ServicesUri:ProductApi"]);
 });
-
+builder.Services.AddHttpClient("CartApi", c =>
+{
+    c.BaseAddress = new Uri(builder.Configuration["ServicesUri:CartApi"]);
+});
+builder.Services.AddScoped<ICartServices, CartService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 
