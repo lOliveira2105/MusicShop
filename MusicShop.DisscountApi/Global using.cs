@@ -1,0 +1,9 @@
+﻿global using System.ComponentModel.DataAnnotations;
+global using System.ComponentModel.DataAnnotations.Schema;
+global using AutoMapper;
+global using MusicShop.DiscountApi.Models;
+global using Microsoft.EntityFrameworkCore;
+global using MusicShop.DiscountApi.DTOs;
+global using MusicShop.DiscountApi.Context;
+global using MusicShop.DiscountApi.Repositories;
+global using Microsoft.OpenApi.Models;

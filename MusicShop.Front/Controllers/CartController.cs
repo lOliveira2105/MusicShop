@@ -1,14 +1,12 @@
-﻿using MusicShop.Front.Models;
-
-namespace MusicShop.Front.Controllers;
-
+﻿namespace MusicShop.Front.Controllers;
 public class CartController : Controller
 {
         private readonly ICartServices _cartServices;
-
-    public CartController(ICartServices cartServices)
+         private readonly ICouponService _couponService;
+    public CartController(ICartServices cartServices, ICouponService couponService)
     {
         _cartServices = cartServices;
+        _couponService = couponService;
     }
     [HttpGet]
     [Authorize]
@@ -32,23 +30,23 @@ public class CartController : Controller
 
         if (cart?.CartHeader is not null)
         {
-            //if (!string.IsNullOrEmpty(cart.CartHeader.CouponCode))
-            //{
-            //    var coupon = await _couponServices.GetDiscountCoupon(cart.CartHeader.CouponCode,
-            //                                                        await GetAccessToken());
-            //    if (coupon?.CouponCode is not null)
-            //    {
-            //        cart.CartHeader.Discount = coupon.Discount;
-            //    }
-            //}
+            if (!string.IsNullOrEmpty(cart.CartHeader.CouponCode))
+            {
+                var coupon = await _couponService.GetDiscountCoupon(cart.CartHeader.CouponCode,
+                                                                                await GetAccessToken());
+                if (coupon?.CouponCode is not null)
+                {
+                    cart.CartHeader.Discount = coupon.Discount;
+                }
+            }
             foreach (var item in cart.CartItems)
             {
                 cart.CartHeader.TotalAmount += (item.Product.Price * item.Quantity);
             }
 
-            //cart.CartHeader.TotalAmount = cart.CartHeader.TotalAmount -
-            //                             (cart.CartHeader.TotalAmount *
-            //                              cart.CartHeader.Discount) / 100;
+            cart.CartHeader.TotalAmount = cart.CartHeader.TotalAmount -
+                                         (cart.CartHeader.TotalAmount *
+                                          cart.CartHeader.Discount) / 100;
         }
         return cart;
     }
@@ -61,6 +59,30 @@ public class CartController : Controller
             return RedirectToAction(nameof(Index));
         }
         return View(id);
+    }
+    [HttpPost]
+    public async Task<IActionResult> ApplyCoupon(CartViewModel cartVM)
+    {
+        if (ModelState.IsValid)
+        {
+            var result = await _cartServices.ApplyCouponAsync(cartVM, await GetAccessToken());
+            if (result)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+        }
+        return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> DeleteCoupon()
+    {
+        var result = await _cartServices.RemoveCouponAsync(GetUserId(), await GetAccessToken());
+
+        if (result)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+        return View();
     }
 
     private async Task<string> GetAccessToken()

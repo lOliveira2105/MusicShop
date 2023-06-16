@@ -57,12 +57,11 @@ public class CartRepository : ICartRepository
         return false;
     }
 
-
     public async Task<CartDTO> UpdateCartAsync(CartDTO cartDto)
     {
         Cart cart = _mapper.Map<Cart>(cartDto);
         
-        await SaveProdutoInDataBase(cartDto, cart);
+        await SaveProductInDataBase(cartDto, cart);
         //Verify if the CartHeader is null
         var cartHeader = await _context.CartHeaders.AsNoTracking().FirstOrDefaultAsync(c => c.UserId == cart.CartHeader.UserId);
         if (cartHeader is null)
@@ -76,18 +75,6 @@ public class CartRepository : ICartRepository
             await UpdateQuantityAndItems(cartDto, cart, cartHeader);
         }
         return _mapper.Map<CartDTO>(cart);
-    }
-
-    public async Task<bool> ApplyCouponsAsyn(string userID, string couponCode)
-    {
-        throw new NotImplementedException();
-    }
-
-
-
-    public async Task<bool> DeleteCouponAsyn(string userId)
-    {
-        throw new NotImplementedException();
     }
     private async Task UpdateQuantityAndItems(CartDTO cartDto, Cart cart, CartHeader? cartHeader)
     {
@@ -116,8 +103,56 @@ public class CartRepository : ICartRepository
             await _context.SaveChangesAsync();
         }
     }
+    private async Task SaveProductInDataBase(CartDTO cartDto, Cart cart)
+    {
+        //Verifica se o produto ja foi salvo senão salva
+        var product = await _context.Products.FirstOrDefaultAsync(p => p.Id ==
+                            cartDto.CartItems.FirstOrDefault().ProductId);
 
+        //salva o produto senão existe no bd
+        if (product is null)
+        {
+            _context.Products.Add(cart.CartItems.FirstOrDefault().Product);
+            await _context.SaveChangesAsync();
+        }
+    }
 
+    public async Task<bool> ApplyCouponsAsyn(string userID, string couponCode)
+    {
+        var cartHeaderApplyCoupon = await _context.CartHeaders
+                               .FirstOrDefaultAsync(c => c.UserId == userID);
+
+        if (cartHeaderApplyCoupon is not null)
+        {
+            cartHeaderApplyCoupon.CouponCode = couponCode;
+
+            _context.CartHeaders.Update(cartHeaderApplyCoupon);
+
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+        return false;
+    }
+
+    public async Task<bool> DeleteCouponAsyn(string userId)
+    {
+        var cartHeaderDeleteCoupon = await _context.CartHeaders
+                               .FirstOrDefaultAsync(c => c.UserId == userId);
+
+        if (cartHeaderDeleteCoupon is not null)
+        {
+            cartHeaderDeleteCoupon.CouponCode = "";
+
+            _context.CartHeaders.Update(cartHeaderDeleteCoupon);
+
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+        return false;
+    }
+ 
     private async Task CreateHeaderAndItems(Cart cart)
     {
         _context.CartHeaders.Add(cart.CartHeader);
@@ -127,17 +162,5 @@ public class CartRepository : ICartRepository
         _context.CartItems.Add(cart.CartItems.FirstOrDefault());
         await _context.SaveChangesAsync();
     }
-
-    private async Task SaveProdutoInDataBase(CartDTO cartDto, Cart cart)
-    {//Verify if the product is already saved other wise it will save
-        var product = await _context.Products.FirstOrDefaultAsync(p => p.Id ==
-                                                cartDto.CartItems.FirstOrDefault().ProductId);
-        if (product == null)
-        {
-            _context.Products.Add(cart.CartItems.FirstOrDefault().Product);
-            await _context.SaveChangesAsync(true);        }
-    }
-
-
 
 }

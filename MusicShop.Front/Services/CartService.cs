@@ -18,7 +18,7 @@ public class CartService : ICartServices
         var client = _clientFactory.CreateClient("CartApi");
         PutTokenInHeaderAuthorization(token, client);
 
-        using (var response = await client.GetAsync($"{apiEndpoint}/getcart/{userId}"))
+        using (var response = await client.GetAsync($"{apiEndpoint}/getcart/0?userid={userId}"))
         {
             if (response.IsSuccessStatusCode)
             {
@@ -142,9 +142,23 @@ public class CartService : ICartServices
         return cartHeaderVM;
     }
 
-    public Task<bool> ApplyCouponAsync(CartViewModel cartVM, string couponCode, string token)
+    public async Task<bool> ApplyCouponAsync(CartViewModel cartVM, string token)
     {
-        throw new NotImplementedException();
+        var client = _clientFactory.CreateClient("CartApi");
+        PutTokenInHeaderAuthorization(token, client);
+
+        StringContent content = new StringContent(JsonSerializer.Serialize(cartVM),
+                                         Encoding.UTF8, "application/json");
+
+        using (var response = await client.PostAsync($"{apiEndpoint}/applycoupon/", content))
+        {
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
     public Task<bool> ClearCartAsync(string userId, string token)
     {
@@ -156,4 +170,5 @@ public class CartService : ICartServices
     {
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
     }
+
 }

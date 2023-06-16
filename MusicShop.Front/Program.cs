@@ -1,6 +1,3 @@
-
-using Microsoft.AspNetCore.Authentication.Cookies;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
@@ -9,10 +6,18 @@ builder.Services.AddHttpClient("ProductApi", c =>
 {
     c.BaseAddress = new Uri(builder.Configuration["ServicesUri:ProductApi"]);
 });
+
 builder.Services.AddHttpClient("CartApi", c =>
 {
     c.BaseAddress = new Uri(builder.Configuration["ServicesUri:CartApi"]);
 });
+
+builder.Services.AddHttpClient("DiscountApi", c =>
+{
+    c.BaseAddress = new Uri(builder.Configuration["ServicesUri:DiscountApi"]);
+});
+
+builder.Services.AddScoped<ICouponService, CouponService>();
 builder.Services.AddScoped<ICartServices, CartService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
